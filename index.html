@@ -1,278 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ackshaiyan Writes — Professional Portfolio</title>
-<style>
-/* ===================== GLOBAL STYLES ===================== */
-* { box-sizing: border-box; margin:0; padding:0; }
-body {
-  font-family: 'Poppins', sans-serif;
-  background:#111;
-  color:#eee;
-  line-height:1.6;
-  scroll-behavior:smooth;
-  opacity:0;
-  transition: opacity 1s ease-in;
-}
-body.loaded{opacity:1;}
-a{text-decoration:none;}
-img{display:block;max-width:100%;}
-ul{list-style:none;}
-h1,h2,h3,h4,h5,h6{color:#fff;}
-p{color:#ccc;}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ackshaiyan Writes — professional writing services: research, technical writing, scripts, resumes, proofreading, and more.">
+  <meta name="theme-color" content="#111">
+  <title>Ackshaiyan Writes — Professional Portfolio</title>
 
-/* ===================== HEADER ===================== */
-header{
-  position:sticky;top:0;z-index:1000;
-  background:#1a1a1a;padding:1rem 2rem;
-  border-bottom:1px solid #333;
-  display:flex;justify-content:space-between;align-items:center;
-  transition:all 0.3s ease;
-}
-header.scrolled{background:#0f0f0f;padding:0.5rem 2rem;box-shadow:0 5px 15px rgba(0,0,0,0.5);}
-.navbar{display:flex;justify-content:space-between;align-items:center;width:100%;}
-.logo img{height:50px;transition:transform 0.3s ease;}
-.logo img:hover{transform:scale(1.05);}
-.nav-links{display:flex;gap:2rem;flex-wrap:wrap;}
-.nav-links a,.linkedin{color:#eee;font-weight:500;transition:color 0.3s,transform 0.2s;position:relative;}
-.nav-links a:hover,.linkedin:hover{color:#56c7c7;transform:translateY(-2px);}
-.nav-links a.active::after{
-  content:'';position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:#56c7c7;border-radius:2px;
-}
+  <!-- Font (keeps original typography choice) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 
-/* ===================== HERO ===================== */
-.hero{
-  position:relative;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;text-align:center;
-  padding:8rem 2rem 6rem 2rem;background:linear-gradient(135deg,#0d0d0d 0%,#1a1a1a 100%);
-  overflow:hidden;
-}
-.hero::after{
-  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-  background:radial-gradient(circle at center,rgba(86,199,199,0.05) 0%,transparent 70%);
-  pointer-events:none;
-}
-.hero-logo{width:150px;margin-bottom:1.5rem;opacity:0;transform:translateY(-20px);animation:fadeSlideIn 1s forwards 0.2s;}
-.hero h1{font-size:3rem;margin-bottom:1rem;letter-spacing:1px;opacity:0;transform:translateY(-20px);animation:fadeSlideIn 1s forwards 0.4s;}
-.slogan{font-size:1.4rem;color:#bbb;margin-bottom:2rem;opacity:0;transform:translateY(-20px);animation:fadeSlideIn 1s forwards 0.6s;}
-.btn-primary{
-  background:#56c7c7;color:#111;padding:1rem 2.5rem;border-radius:8px;font-weight:bold;
-  transition:background 0.3s,transform 0.2s,box-shadow 0.3s;opacity:0;transform:translateY(-20px);
-  animation:fadeSlideIn 1s forwards 0.8s;
-}
-.btn-primary:hover{background:#4ab0b0;transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,0.3);}
+  <style>
+    /* ===================== GLOBAL STYLES ===================== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root{
+      --bg:#111; --surface:#1a1a1a; --muted:#bbb; --accent:#56c7c7; --accent-2:#4ab0b0;
+      --text:#eee; --max-width:1200px; --gap:2.5rem;
+      --nav-height:64px;
+    }
+    html,body{height:100%;}
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      scroll-behavior:smooth;
+      opacity:0;
+      transition: opacity 1s ease-in;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    body.loaded{ opacity:1; }
 
-/* ===================== SECTIONS ===================== */
-section{padding:6rem 2rem;max-width:1200px;margin:0 auto;opacity:0;transform:translateY(40px);transition:opacity 0.8s ease,transform 0.8s ease;}
-section.visible{opacity:1;transform:translateY(0);}
-h2{font-size:2.2rem;margin-bottom:2rem;text-align:center;letter-spacing:1px;}
-p{font-size:1rem;margin-bottom:1rem;}
+    a{ color:inherit; text-decoration:none; }
+    img{ display:block; max-width:100%; height:auto; }
+    ul{ list-style:none; }
+    h1,h2,h3,h4,h5,h6{ color:#fff; }
+    p{ color:#ccc; }
 
-/* ===================== GRID / CARDS ===================== */
-.grid{display:grid;gap:2.5rem;}
-.grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
-.card{
-  background:#1a1a1a;border-radius:12px;padding:2rem;border:1px solid #333;
-  display:flex;flex-direction:column;align-items:flex-start;opacity:0;transform:translateY(20px);
-  transition:transform 0.3s,box-shadow 0.3s;
-}
-.card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.5);}
-.card.visible{opacity:1;transform:translateY(0);}
-.card h3{margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;font-size:1.3rem;}
-.card svg{width:24px;height:24px;fill:#56c7c7;transition:fill 0.3s;}
-.card:hover svg{fill:#4ab0b0;}
+    /* ===================== HEADER / NAV ===================== */
+    .skip-link{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+    .skip-link:focus{ left:1rem; top:1rem; width:auto; height:auto; padding:.5rem 1rem; background:#fff; color:#111; border-radius:6px; }
 
-/* ===================== ABOUT ===================== */
-.centered-bold{text-align:center;font-weight:bold;font-size:1.3rem;margin-bottom:0.5rem;}
-.centered-small{text-align:center;font-size:0.9rem;color:#bbb;}
+    header{
+      position:sticky; top:0; z-index:1000;
+      background:var(--surface); padding:.6rem 1rem; height:var(--nav-height);
+      border-bottom:1px solid #333;
+      display:flex; justify-content:center; align-items:center;
+      transition:all 0.25s ease;
+      backdrop-filter: blur(4px);
+    }
+    header.scrolled{ background:#0f0f0f; box-shadow:0 5px 15px rgba(0,0,0,0.35); }
 
-/* ===================== FORM ===================== */
-form input,form textarea{width:100%;padding:1rem;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#eee;margin-bottom:1rem;transition:border 0.3s;}
-form input:focus,form textarea:focus{border-color:#56c7c7;outline:none;}
-form button{cursor:pointer;border:none;padding:1rem 2.5rem;border-radius:8px;font-weight:bold;background:#56c7c7;color:#111;transition:background 0.3s,transform 0.2s;}
-form button:hover{background:#4ab0b0;transform:translateY(-2px);}
+    .navbar{ width:100%; max-width:var(--max-width); display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+    .logo img{ height:44px; transition:transform 0.25s ease; }
+    .logo img:hover{ transform:scale(1.03); }
 
-/* ===================== FOOTER ===================== */
-footer{text-align:center;padding:3rem 2rem;background:#1a1a1a;color:#777;border-top:1px solid #333;font-size:0.95rem;}
-footer a{color:#56c7c7;transition:color 0.3s;}
-footer a:hover{text-decoration:underline;color:#4ab0b0;}
+    /* nav links */
+    .nav-links{ display:flex; gap:1.5rem; align-items:center; }
+    .nav-links a, .linkedin{ color:var(--text); font-weight:500; transition:color 0.2s, transform 0.15s; position:relative; padding:.4rem .25rem; }
+    .nav-links a:hover, .linkedin:hover{ color:var(--accent); transform:translateY(-1px); }
+    .nav-links a.active::after{ content:''; position:absolute; left:0; bottom:-6px; width:100%; height:2px; background:var(--accent); border-radius:2px; }
 
-/* ===================== MODAL ===================== */
-.modal-overlay{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;
-  z-index:2000;
-}
-.modal-overlay.active{display:flex;}
-.modal-content{
-  background:#1a1a1a;padding:2rem;border-radius:12px;max-width:600px;width:90%;position:relative;
-  animation:fadeSlideIn 0.4s ease forwards;
-}
-.modal-close{
-  position:absolute;top:10px;right:15px;font-size:1.5rem;color:#eee;cursor:pointer;
-  transition:color 0.3s;
-}
-.modal-close:hover{color:#56c7c7;}
+    /* nav toggle for mobile */
+    .nav-toggle{ display:none; background:transparent; border:0; color:var(--text); font-size:1.25rem; padding:.4rem; }
+    .nav-toggle:focus{ outline:2px solid rgba(86,199,199,0.15); border-radius:6px; }
 
-/* ===================== ANIMATIONS ===================== */
-@keyframes fadeSlideIn{to{opacity:1;transform:translateY(0);}}
-@media(max-width:768px){.hero h1{font-size:2.2rem;}.hero-logo{width:120px;}.nav-links{gap:1rem;}}
-</style>
+    /* ===================== HERO ===================== */
+    .hero{
+      position:relative; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+      padding:6.5rem 1.25rem 4.5rem; background:linear-gradient(135deg,#0d0d0d 0%,#1a1a1a 100%); overflow:hidden;
+    }
+    .hero::after{ content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:radial-gradient(circle at center, rgba(86,199,199,0.05) 0%, transparent 70%); pointer-events:none; }
+    .hero-logo{ width:140px; margin-bottom:1.25rem; opacity:0; transform:translateY(-20px); animation:fadeSlideIn 1s forwards 0.2s; }
+    .hero h1{ font-size:clamp(1.8rem, 4vw, 3rem); margin-bottom:.75rem; letter-spacing:1px; opacity:0; transform:translateY(-20px); animation:fadeSlideIn 1s forwards 0.4s; }
+    .slogan{ font-size:clamp(.95rem, 2.2vw, 1.4rem); color:var(--muted); margin-bottom:1.5rem; opacity:0; transform:translateY(-20px); animation:fadeSlideIn 1s forwards 0.6s; }
+
+    .btn-primary{ display:inline-block; background:var(--accent); color:#111; padding:.85rem 1.6rem; border-radius:8px; font-weight:700; font-size:0.95rem;
+      transition:background 0.25s, transform 0.15s, box-shadow 0.25s; opacity:0; transform:translateY(-20px); animation:fadeSlideIn 1s forwards 0.8s; }
+    .btn-primary:hover{ background:var(--accent-2); transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.3); }
+    .btn-primary:focus{ outline:3px solid rgba(86,199,199,0.12); outline-offset:3px; }
+
+    /* ===================== SECTIONS ===================== */
+    main{ min-height:60vh; }
+    section{ padding:4.25rem 1.25rem; max-width:var(--max-width); margin:0 auto; opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .6s ease; }
+    section.visible{ opacity:1; transform:translateY(0); }
+    h2{ font-size:clamp(1.4rem, 3.2vw, 2.2rem); margin-bottom:1.25rem; text-align:center; letter-spacing:.6px; }
+    p{ font-size:1rem; margin-bottom:1rem; }
+
+    /* ===================== GRID / CARDS ===================== */
+    .grid{ display:grid; gap:var(--gap); }
+    .grid-2{ grid-template-columns:repeat(2, 1fr); }
+    .card{ background:var(--surface); border-radius:12px; padding:1.25rem; border:1px solid #333; display:flex; flex-direction:column; align-items:flex-start; min-height:88px;
+      opacity:0; transform:translateY(14px); transition:transform .25s, box-shadow .25s; }
+    .card:hover{ transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.45); }
+    .card.visible{ opacity:1; transform:translateY(0); }
+    .card h3{ margin-bottom:.75rem; display:flex; align-items:center; gap:.5rem; font-size:1.05rem; }
+    .card svg{ width:20px; height:20px; fill:var(--accent); transition:fill .2s; }
+    .card:hover svg{ fill:var(--accent-2); }
+    .card:focus{ outline:3px solid rgba(86,199,199,0.09); outline-offset:3px; }
+
+    /* ===================== ABOUT ===================== */
+    .centered-bold{ text-align:center; font-weight:bold; font-size:1.05rem; margin-bottom:.5rem; }
+    .centered-small{ text-align:center; font-size:0.9rem; color:var(--muted); }
+
+    /* ===================== FORM ===================== */
+    form.grid{ display:grid; gap:1rem; }
+    form input, form textarea{ width:100%; padding:.9rem; border-radius:8px; border:1px solid #333; background:#0d0d0d; color:var(--text); margin-bottom:0; transition:border .2s; }
+    form input:focus, form textarea:focus{ border-color:var(--accent); outline:none; }
+    form button{ cursor:pointer; border:none; padding:.9rem 1.6rem; border-radius:8px; font-weight:700; background:var(--accent); color:#111; transition:background .25s, transform .15s; }
+    form button:hover{ background:var(--accent-2); transform:translateY(-2px); }
+
+    /* ===================== FOOTER ===================== */
+    footer{ text-align:center; padding:2rem 1.25rem; background:var(--surface); color:#777; border-top:1px solid #333; font-size:0.95rem; }
+    footer a{ color:var(--accent); transition:color .2s; }
+    footer a:hover{ text-decoration:underline; color:var(--accent-2); }
+
+    /* ===================== MODAL ===================== */
+    .modal-overlay{ position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; z-index:2000; padding:1rem; }
+    .modal-overlay.active{ display:flex; }
+    .modal-content{ background:var(--surface); padding:1.25rem; border-radius:12px; max-width:700px; width:100%; position:relative; animation:fadeSlideIn .36s ease forwards; }
+    .modal-close{ position:absolute; top:8px; right:12px; font-size:1.25rem; color:var(--text); cursor:pointer; background:transparent; border:0; }
+    .modal-close:hover{ color:var(--accent); }
+
+    /* ===================== ANIMATIONS / RESPONSIVE ===================== */
+    @keyframes fadeSlideIn{ to{ opacity:1; transform:translateY(0); } }
+
+    /* Mobile-first adjustments */
+    @media (max-width: 899px){
+      .grid-2{ grid-template-columns:1fr; }
+      header{ padding:.5rem 0.75rem; }
+      .nav-links{ position:fixed; right:1rem; top:var(--nav-height); background:linear-gradient(180deg, rgba(26,26,26,0.98), rgba(17,17,17,0.98)); border-radius:12px; padding:1rem; display:flex; flex-direction:column; gap:.5rem; box-shadow:0 8px 30px rgba(0,0,0,0.6); transform:translateY(-10px); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+      .nav-links.open{ opacity:1; pointer-events:auto; transform:translateY(0); }
+      .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
+      .nav-links a{ padding:.6rem .8rem; }
+
+      .hero{ padding:5.5rem 1rem 3.5rem; }
+      .hero-logo{ width:120px; }
+      .card{ padding:1rem; }
+      section{ padding:3rem 1rem; }
+      .modal-content{ padding:1rem; }
+    }
+
+    /* Larger desktops */
+    @media (min-width:900px){
+      .grid-2{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+      .nav-links{ display:flex; position:static; background:transparent; padding:0; box-shadow:none; transform:none; opacity:1; pointer-events:auto; }
+      .nav-toggle{ display:none; }
+      .hero{ padding:8rem 2rem 6rem; }
+      .hero-logo{ width:150px; }
+      .card{ padding:2rem; }
+      section{ padding:6rem 2rem; }
+      footer{ padding:3rem 2rem; }
+    }
+
+  </style>
 </head>
 
 <body>
-<header>
-  <nav class="navbar">
-    <a href="#home" class="logo"><img src="assets/logo.png" alt="Ackshaiyan Writes Logo"></a>
-    <ul class="nav-links">
-      <li><a href="#home" class="nav-link">Home</a></li>
-      <li><a href="#services" class="nav-link">Services</a></li>
-      <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-    <a href="https://www.linkedin.com/in/ackshaiyan-mahinthan-078153317/" target="_blank" class="linkedin">LinkedIn</a>
-  </nav>
-</header>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<section id="home" class="hero">
-  <img src="assets/logo.png" alt="Ackshaiyan Writes Logo" class="hero-logo">
-  <h1>Ackshaiyan Writes</h1>
-  <p class="slogan">Writing for your success</p>
-  <a href="#services" class="btn-primary">Explore Services</a>
-</section>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Primary">
+      <a href="#home" class="logo" aria-label="Ackshaiyan Writes home"><img src="assets/logo.png" alt="Ackshaiyan Writes Logo" loading="lazy"></a>
 
-<section id="services">
-  <h2>Professional Writing Services</h2>
-  <div class="grid grid-2">
-    <div class="card" data-modal="Research">
-      <h3><svg viewBox="0 0 24 24"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h12v2H3v-2z"/></svg>Research & Summaries</h3>
-      <p>Concise, insightful summaries and research reports tailored for academic, technical, or business needs.</p>
-    </div>
-    <div class="card" data-modal="Technical">
-      <h3><svg viewBox="0 0 24 24"><path d="M12 0l8 4v16l-8 4-8-4V4z"/></svg>Technical Writing</h3>
-      <p>Clear, precise documentation, manuals, and guides for complex subjects.</p>
-    </div>
-    <div class="card" data-modal="Scriptwriting">
-      <h3><svg viewBox="0 0 24 24"><path d="M2 3h20v18H2V3zm2 2v14h16V5H4z"/></svg>Scriptwriting</h3>
-      <p>Engaging scripts for video, podcast, or presentations.</p>
-    </div>
-    <div class="card" data-modal="Resume">
-      <h3><svg viewBox="0 0 24 24"><path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h12v2H3v-2z"/></svg>Resume Writing</h3>
-      <p>Optimized resumes highlighting professional strengths with clarity.</p>
-    </div>
-    <div class="card" data-modal="Proofreading">
-      <h3><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14l4-4h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>Proofreading & Editing</h3>
-      <p>Detailed corrections ensuring grammar, style, and tone perfection.</p>
-    </div>
-    <div class="card" data-modal="EmailCopy">
-      <h3><svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v12h16V6H4zm8 5l8-5H4l8 5z"/></svg>Email Copy</h3>
-      <p>Persuasive and tailored email content designed for conversions and engagement.</p>
-    </div>
-    <div class="card" data-modal="BookEditing">
-      <h3><svg viewBox="0 0 24 24"><path d="M21 4H7a2 2 0 0 0-2 2v14h16V6a2 2 0 0 0-2-2zM7 20V6h14v14H7z"/></svg>Book Editing</h3>
-      <p>Refinement for manuscripts to meet publishing standards and flow seamlessly.</p>
-    </div>
-    <div class="card" data-modal="PodcastWriting">
-      <h3><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10h2a8 8 0 0 1 16 0h2A10 10 0 0 0 12 2zm0 4a6 6 0 0 0-6 6h2a4 4 0 0 1 8 0h2a6 6 0 0 0-6-6z"/></svg>Podcast Writing</h3>
-      <p>Scripts and outlines crafted for dynamic and listener-friendly episodes.</p>
+      <button class="nav-toggle" id="navToggle" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+
+      <ul id="primaryNav" class="nav-links" role="menubar" aria-label="Main menu">
+        <li role="none"><a role="menuitem" href="#home" class="nav-link">Home</a></li>
+        <li role="none"><a role="menuitem" href="#services" class="nav-link">Services</a></li>
+        <li role="none"><a role="menuitem" href="#portfolio" class="nav-link">Portfolio</a></li>
+        <li role="none"><a role="menuitem" href="#about" class="nav-link">About</a></li>
+        <li role="none"><a role="menuitem" href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <a href="https://www.linkedin.com/in/ackshaiyan-mahinthan-078153317/" target="_blank" rel="noopener noreferrer" class="linkedin">LinkedIn</a>
+    </nav>
+  </header>
+
+  <main id="main" role="main">
+    <section id="home" class="hero">
+      <img src="assets/logo.png" alt="Ackshaiyan Writes Logo" class="hero-logo" loading="lazy">
+      <h1>Ackshaiyan Writes</h1>
+      <p class="slogan">Writing for your success</p>
+      <a href="#services" class="btn-primary">Explore Services</a>
+    </section>
+
+    <section id="services">
+      <h2>Professional Writing Services</h2>
+      <div class="grid grid-2">
+        <div class="card" data-modal="Research" tabindex="0" role="button" aria-pressed="false">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h12v2H3v-2z"/></svg>Research & Summaries</h3>
+          <p>Concise, insightful summaries and research reports tailored for academic, technical, or business needs.</p>
+        </div>
+        <div class="card" data-modal="Technical" tabindex="0" role="button" aria-pressed="false">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0l8 4v16l-8 4-8-4V4z"/></svg>Technical Writing</h3>
+          <p>Clear, precise documentation, manuals, and guides for complex subjects.</p>
+        </div>
+        <div class="card" data-modal="Scriptwriting" tabindex="0" role="button" aria-pressed="false">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 3h20v18H2V3zm2 2v14h16V5H4z"/></svg>Scriptwriting</h3>
+          <p>Engaging scripts for video, podcast, or presentations.</p>
+        </div>
+        <div class="card" data-modal="Resume" tabindex="0" role="button" aria-pressed="false">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h12v2H3v-2z"/></svg>Resume Writing</h3>
+          <p>Optimized resumes highlighting professional strengths with clarity.</p>
+        </div>
+        <div class="card" data-modal="Proofreading" tabindex="0" role="button" aria-pressed="false">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 3H5a2 2 0 0 0-2 2v14l4-4h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>Proofreading & Editing</h3>
+          <p>Detailed corrections ensuring grammar, style, and tone perfection.</p>
+        </div>
+        <div class="card" data-modal="EmailCopy" tabindex="0" role="button" aria-pressed="false">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 4h20v16H2V4zm2 2v12h16V6H4zm8 5l8-5H4l8 5z"/></svg>Email Copy</h3>
+          <p>Persuasive and tailored email content designed for conversions and engagement.</p>
+        </div>
+        <div class="card" data-modal="BookEditing" tabindex="0" role="button" aria-pressed="false">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 4H7a2 2 0 0 0-2 2v14h16V6a2 2 0 0 0-2-2zM7 20V6h14v14H7z"/></svg>Book Editing</h3>
+          <p>Refinement for manuscripts to meet publishing standards and flow seamlessly.</p>
+        </div>
+        <div class="card" data-modal="PodcastWriting" tabindex="0" role="button" aria-pressed="false">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-10 10h2a8 8 0 0 1 16 0h2A10 10 0 0 0 12 2zm0 4a6 6 0 0 0-6 6h2a4 4 0 0 1 8 0h2a6 6 0 0 0-6-6z"/></svg>Podcast Writing</h3>
+          <p>Scripts and outlines crafted for dynamic and listener-friendly episodes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <h2>Portfolio & Achievements</h2>
+      <p>Recognitions and certificates reflecting dedication and skill.</p>
+      <div class="grid grid-2">
+        <div class="card" data-modal="Saylor Academy" tabindex="0" role="button"> <strong>2025:</strong> Saylor Academy — Professional Etiquette, Resume Writing, Professional Writing</div>
+        <div class="card" data-modal="Young Writers" tabindex="0" role="button"> <strong>2018 & 2022:</strong> Young Writers Creative Writer Award</div>
+        <div class="card" data-modal="John Locke" tabindex="0" role="button"> <strong>2025:</strong> John Locke Institute Finalist — Theology Essay</div>
+        <div class="card" data-modal="Immerse" tabindex="0" role="button"> <strong>2025:</strong> Immerse Education Finalist (Essay Scholarship)</div>
+        <div class="card" data-modal="Northeastern" tabindex="0" role="button"> <strong>2025:</strong> Northeastern University London — Philosophy Essay Finalist</div>
+        <div class="card" data-modal="Square Chambers" tabindex="0" role="button"> <strong>2024:</strong> New Square Chambers 2nd Place — Stephen Lawrence Essay Day</div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About Ackshaiyan Writes</h2>
+      <p>Ackshaiyan M. founded ackshaiyanWrite, a full-service, multi-disciplinary professional writing company. From sharp research summaries and precise technical documentation to fascinating scripts and compelling email copy, AckshaiyanWrite offers clarity, precision, and creativity in every job. Whether you need polished resumes that showcase your professional strengths, meticulous proofreading and editing to guarantee perfection, polished book manuscripts prepared to meet publishing standards, or dynamic podcast scripts crafted for listener engagement, Ackshaiyan M brings specialised knowledge and dedication to every task. The service helps clients effectively and persuasively communicate their ideas across all forms, sectors, and audiences with constant quality and attention to detail.</p>
+      <p class="centered-bold">Letter, number, art and science; Of living kind both are the eyes</p>
+      <p class="centered-small">Letters and numbers are the two eyes of man.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Let's work together! Fill out the form or reach out directly.</p>
+      <form action="https://formspree.io/f/mqkjkekv" method="POST" class="grid" aria-label="Contact form">
+        <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" aria-label="Your Message" required></textarea>
+        <button type="submit" class="btn-primary">Send Message</button>
+      </form>
+      <p>Or connect via <a href="https://www.linkedin.com/in/ackshaiyan-mahinthan-078153317/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Ackshaiyan Writes — Writing for your success | <a href="https://www.linkedin.com/in/ackshaiyan-mahinthan-078153317/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+      <button class="modal-close" id="modalClose" aria-label="Close dialog">&times;</button>
+      <h3 id="modalTitle">Title</h3>
+      <p id="modalDesc">Description...</p>
     </div>
   </div>
-</section>
 
-<section id="portfolio">
-  <h2>Portfolio & Achievements</h2>
-  <p>Recognitions and certificates reflecting dedication and skill.</p>
-  <div class="grid grid-2">
-    <div class="card" data-modal="Saylor Academy"><strong>2025:</strong> Saylor Academy — Professional Etiquette, Resume Writing, Professional Writing</div>
-    <div class="card" data-modal="Young Writers"><strong>2018 & 2022:</strong> Young Writers Creative Writer Award</div>
-    <div class="card" data-modal="John Locke"><strong>2025:</strong> John Locke Institute Finalist — Theology Essay</div>
-    <div class="card" data-modal="Immerse"><strong>2025:</strong> Immerse Education Finalist (Essay Scholarship)</div>
-    <div class="card" data-modal="Northeastern"><strong>2025:</strong> Northeastern University London — Philosophy Essay Finalist</div>
-    <div class="card" data-modal="Square Chambers"><strong>2024:</strong> New Square Chambers 2nd Place — Stephen Lawrence Essay Day</div>
-  </div>
-</section>
+  <script>
+    // simple boot animation
+    document.addEventListener('DOMContentLoaded', () => document.body.classList.add('loaded'));
 
-<section id="about">
-  <h2>About Ackshaiyan Writes</h2>
-  <p>Ackshaiyan M. founded ackshaiyanWrite, a full-service, multi-disciplinary professional writing company. From sharp research summaries and precise technical documentation to fascinating scripts and compelling email copy, AckshaiyanWrite offers clarity, precision, and creativity in every job. Whether you need polished resumes that showcase your professional strengths, meticulous proofreading and editing to guarantee perfection, polished book manuscripts prepared to meet publishing standards, or dynamic podcast scripts crafted for listener engagement, Ackshaiyan M brings specialised knowledge and dedication to every task. The service helps clients effectively and persuasively communicate their ideas across all forms, sectors, and audiences with constant quality and attention to detail.</p>
-  <p class="centered-bold">Letter, number, art and science; Of living kind both are the eyes</p>
-  <p class="centered-small">Letters and numbers are the two eyes of man.</p>
-</section>
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const header = document.querySelector('header');
+    const cards = document.querySelectorAll('.card');
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Let's work together! Fill out the form or reach out directly.</p>
-  <form action="https://formspree.io/f/mqkjkekv" method="POST" class="grid">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-    <button type="submit" class="btn-primary">Send Message</button>
-  </form>
-  <p>Or connect via <a href="https://www.linkedin.com/in/ackshaiyan-mahinthan-078153317/" target="_blank">LinkedIn</a>.</p>
-</section>
+    // NAV TOGGLE for mobile
+    const navToggle = document.getElementById('navToggle');
+    const primaryNav = document.getElementById('primaryNav');
+    navToggle && navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      primaryNav.classList.toggle('open');
+    });
 
-<footer>
-  <p>© 2025 Ackshaiyan Writes — Writing for your success | <a href="https://www.linkedin.com/in/ackshaiyan-mahinthan-078153317/" target="_blank">LinkedIn</a></p>
-</footer>
+    // close nav when a nav-link is clicked (mobile)
+    navLinks.forEach(link => link.addEventListener('click', () => {
+      if (primaryNav.classList.contains('open')){
+        primaryNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    }));
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-content">
-    <span class="modal-close" id="modalClose">&times;</span>
-    <h3 id="modalTitle">Title</h3>
-    <p id="modalDesc">Description...</p>
-  </div>
-</div>
+    // scroll / active link handling + reveal
+    const onScroll = () => {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 100;
+        if (window.scrollY >= top) current = sec.getAttribute('id');
+      });
 
-<script>
-document.addEventListener('DOMContentLoaded',()=>document.body.classList.add('loaded'));
+      navLinks.forEach(link => link.classList.remove('active'));
+      document.querySelector(`.nav-link[href="#${current}"]`)?.classList.add('active');
 
-const sections=document.querySelectorAll('section');
-const navLinks=document.querySelectorAll('.nav-link');
-const header=document.querySelector('header');
-const cards=document.querySelectorAll('.card');
+      if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
 
-window.addEventListener('scroll',()=>{
-  let current='';
-  sections.forEach(sec=>{
-    const top=sec.offsetTop-100;
-    if(window.scrollY>=top) current=sec.getAttribute('id');
-  });
-  navLinks.forEach(link=>link.classList.remove('active'));
-  document.querySelector(`.nav-link[href="#${current}"]`)?.classList.add('active');
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) sec.classList.add('visible');
+      });
 
-  if(window.scrollY>50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) card.classList.add('visible');
+      });
+    };
 
-  sections.forEach(sec=>{
-    const rect=sec.getBoundingClientRect();
-    if(rect.top<window.innerHeight-100) sec.classList.add('visible');
-  });
-  cards.forEach(card=>{
-    const rect=card.getBoundingClientRect();
-    if(rect.top<window.innerHeight-50) card.classList.add('visible');
-  });
-});
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('load', onScroll);
 
-// MODAL LOGIC
-const modalOverlay=document.getElementById('modalOverlay');
-const modalTitle=document.getElementById('modalTitle');
-const modalDesc=document.getElementById('modalDesc');
-const modalClose=document.getElementById('modalClose');
+    // MODAL + accessibility improvements
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalClose = document.getElementById('modalClose');
+    let lastFocused = null;
 
-cards.forEach(card=>{
-  card.addEventListener('click',()=>{
-    const title=card.getAttribute('data-modal')||card.querySelector('h3')?.innerText||'Detail';
-    const desc=card.querySelector('p')?.innerText||'More information about this item.';
-    modalTitle.innerText=title;
-    modalDesc.innerText=desc;
-    modalOverlay.classList.add('active');
-  });
-});
-modalClose.addEventListener('click',()=>modalOverlay.classList.remove('active'));
-modalOverlay.addEventListener('click',e=>{if(e.target===modalOverlay) modalOverlay.classList.remove('active');});
-</script>
+    function openModal(title, desc){
+      lastFocused = document.activeElement;
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+      modalOverlay.classList.add('active');
+      modalOverlay.setAttribute('aria-hidden','false');
+      modalClose.focus();
+    }
+
+    function closeModal(){
+      modalOverlay.classList.remove('active');
+      modalOverlay.setAttribute('aria-hidden','true');
+      if (lastFocused) lastFocused.focus();
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.getAttribute('data-modal') || card.querySelector('h3')?.innerText || 'Detail';
+        const desc = card.querySelector('p')?.innerText || 'More information about this item.';
+        openModal(title, desc);
+      });
+
+      // keyboard support for cards (Enter / Space)
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+      });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  </script>
 </body>
 </html>
